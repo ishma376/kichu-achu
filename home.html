@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 3rd Anniversary ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- GLOBAL ---------- */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family: 'Poppins', sans-serif;
+      color:#fff;
+      overflow-x:hidden;
+      background: url("photos/home.jpg") no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container{
+      max-width:900px;
+      margin:0 auto;
+      text-align:center;
+      padding:50px 20px;
+    }
+
+    /* ---------- COUNTDOWN ---------- */
+    #countdown{
+      font-size: 4em;
+      font-family:'Playfair Display', serif;
+      margin-top:100px;
+      animation: fadeIn 1s ease forwards;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    /* ---------- MESSAGE ---------- */
+    #message{
+      margin-top:50px;
+      font-size:1.5em;
+      opacity:0;
+      transition: opacity 1s;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* ---------- LETTER SECTION ---------- */
+    #letter-section{
+      margin-top:100px;
+      padding:30px;
+      background: rgba(255,255,255,0.2);
+      border-radius:20px;
+      display:none;
+      backdrop-filter: blur(5px);
+    }
+    #letter{
+      margin-top:20px;
+      padding:20px;
+      background: rgba(255,182,193,0.2);
+      border-radius:15px;
+      font-family:'Playfair Display', serif;
+      line-height:1.6;
+      display:none;
+      animation: fadeIn 2s forwards;
+    }
+    input[type="text"]{
+      padding:10px;
+      margin:10px 0;
+      width:80%;
+      border:none;
+      border-radius:10px;
+      background: rgba(255,255,255,0.3);
+      color: #fff;
+    }
+    input::placeholder{
+      color: #fce4ec;
+    }
+    button{
+      padding:10px 20px;
+      border:none;
+      border-radius:20px;
+      background:#ff4d6d;
+      color:white;
+      cursor:pointer;
+      font-size:1em;
+      transition: 0.3s;
+      margin-top:10px;
+    }
+    button:disabled{
+      background:#aaa;
+      cursor:not-allowed;
+    }
+    button:hover:not(:disabled){
+      background:#ff1a45;
+    }
+
+    /* ---------- PHOTO BUTTON ---------- */
+    #photo-btn{
+      margin-top:30px;
+    }
+
+    /* ---------- PHOTO SECTION ---------- */
+    #photo-section{
+      margin-top:50px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+      opacity:0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    #photo-section img{
+      width:250px;
+      border-radius:20px;
+      box-shadow: 0 0 20px rgba(255,0,100,0.5);
+      transition: transform 0.5s;
+    }
+    #photo-section img:hover{
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn{
+      0%{opacity:0;}
+      100%{opacity:1;}
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Countdown Section -->
+    <div id="countdown">3</div>
+
+    <!-- Romantic Message -->
+    <div id="message">Open your heart to a new year of love ❤️</div>
+
+    <!-- Letter Section -->
+    <div id="letter-section">
+      <h2>Unlock Your Letter 💌</h2>
+      <p>Write 3 things you love most about her:</p>
+      <input type="text" id="line1" placeholder="First thing you love..."><br>
+      <input type="text" id="line2" placeholder="Second thing you love..."><br>
+      <input type="text" id="line3" placeholder="Third thing you love..."><br>
+
+      <!-- ✅ Redirect to letter.html instead of showing letter -->
+      <button id="unlock" disabled>Open Letter</button>
+
+      <!-- Photo Button -->
+      <button id="photo-btn">Open Precious Photos 📸</button>
+    </div>
+
+    <!-- Photo Section (preview only) -->
+    <div id="photo-section">
+      <img src="photo1.jpg" alt="Photo 1">
+      <img src="photo2.jpg" alt="Photo 2">
+    </div>
+  </div>
+
+  <script>
+    // ---------- COUNTDOWN ----------
+    let countdownEl = document.getElementById('countdown');
+    let messageEl = document.getElementById('message');
+    let countdown = 3;
+
+    let countdownInterval = setInterval(()=>{
+      countdown--;
+      if(countdown>0){
+        countdownEl.textContent = countdown;
+      } else {
+        clearInterval(countdownInterval);
+        countdownEl.textContent = "Happy Anniversary Achuettan! ❤️";
+        messageEl.style.opacity = 1;
+        document.getElementById('letter-section').style.display = 'block';
+      }
+    },1000);
+
+    // ---------- LETTER UNLOCK ----------
+    const inputs = [document.getElementById('line1'), document.getElementById('line2'), document.getElementById('line3')];
+    const unlockBtn = document.getElementById('unlock');
+
+    inputs.forEach(input=>{
+      input.addEventListener('input', ()=>{
+        if(inputs.every(i=>i.value.trim()!=="")){
+          unlockBtn.disabled = false;
+        } else {
+          unlockBtn.disabled = true;
+        }
+      });
+    });
+
+    // ✅ Redirect to letter.html instead of showing the letter
+    unlockBtn.addEventListener('click', ()=>{
+      window.location.href = "letter.html"; // go to letter page
+    });
+
+    // ---------- PHOTO BUTTON ----------
+    const photoBtn = document.getElementById('photo-btn');
+    photoBtn.addEventListener('click', ()=>{
+      window.location.href = "photo.html"; // redirect to photo page
+    });
+
+    // ---------- PHOTO ANIMATION ----------
+    window.addEventListener('scroll', ()=>{
+      let photoSection = document.getElementById('photo-section');
+      if(window.scrollY + window.innerHeight > photoSection.offsetTop + 100){
+        photoSection.style.opacity = 1;
+        photoSection.style.transform = 'translateY(0)';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+

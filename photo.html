@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Precious Moments ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- GLOBAL ---------- */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family: 'Poppins', sans-serif;
+      color:#fff;
+      min-height:100vh;
+      background: url("photos/vintage-paper.png") no-repeat center center fixed;
+      background-size: cover;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding:50px 20px;
+    }
+
+    h1{
+      font-family:'Playfair Display', serif;
+      font-size:3em;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      margin-bottom:40px;
+      text-align:center;
+    }
+
+    /* ---------- PHOTO GALLERY ---------- */
+    .gallery{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:50px;
+      max-width:900px;
+      width:100%;
+    }
+
+    .photo{
+      background: rgba(255,182,193,0.2);
+      border-radius:20px;
+      padding:20px;
+      text-align:center;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 20px rgba(255,0,100,0.4);
+    }
+
+    .photo img{
+      width:100%;
+      max-width:400px;
+      border-radius:20px;
+      box-shadow: 0 0 20px rgba(255,0,100,0.5);
+      transition: transform 0.5s;
+    }
+
+    .photo img:hover{
+      transform: scale(1.05);
+    }
+
+    .description{
+      margin-top:15px;
+      font-size:1.2em;
+      line-height:1.5;
+      font-family:'Playfair Display', serif;
+      color:#ffe4ec;
+      text-shadow:1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* ---------- BACK BUTTON ---------- */
+    .back-btn{
+      margin-top:50px;
+      padding:10px 20px;
+      border:none;
+      border-radius:20px;
+      background:#ff4d6d;
+      color:white;
+      cursor:pointer;
+      font-size:1em;
+      transition:0.3s;
+    }
+    .back-btn:hover{
+      background:#ff1a45;
+    }
+
+    @media(max-width:600px){
+      .photo img{
+        max-width:90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Our Precious Moments 💖</h1>
+
+  <div class="gallery">
+    <!-- Photo 1 -->
+    <div class="photo">
+      <img src="photos/1.jpg" alt="Precious Moment 1">
+      <div class="description">The moment we first laughed together – a memory I’ll treasure forever. Your smile lights up my world. 🌸</div>
+    </div>
+
+    <!-- Photo 2 -->
+    <div class="photo">
+      <img src="photos/2.jpg" alt="Precious Moment 2">
+      <div class="description">A quiet evening under the stars with you – every second felt like magic. My heart is always with you. ✨❤️</div>
+    </div>
+  </div>
+
+  <button class="back-btn" onclick="goBack()">⬅ Back to Home</button>
+
+  <script>
+    function goBack(){
+      window.location.href = "home.html"; // replace with your main page filename
+    }
+  </script>
+
+</body>
+</html>
